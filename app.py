@@ -4,7 +4,7 @@ import os
 app = Flask(__name__)
 
 # ── Configuración de la agencia ──────────────────────────────────────────────
-WHATSAPP_NUMBER = "5351234567"   # ← Cambia al número real de Novatravel
+WHATSAPP_NUMBER = "18494627511"   # ← Cambia al número real de Novatravel
 WHATSAPP_MSG    = "Hola, acabo de hacer el test en su web y me interesa planificar mi viaje. ¿Me pueden ayudar?"
 
 # ── Lógica de cualificación (sin BD, sin sesión) ─────────────────────────────
