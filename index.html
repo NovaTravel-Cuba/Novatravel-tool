@@ -262,11 +262,206 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
   .hidden { display: none !important; }
+
+  /* ── BANNER CAROUSEL ─────────────────────────────────── */
+  .banner-section {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .banner-track {
+    display: flex;
+    gap: 12px;
+    animation: scrollBanners 40s linear infinite;
+    width: max-content;
+  }
+  .banner-section:hover .banner-track { animation-play-state: paused; }
+  @keyframes scrollBanners {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .banner-card {
+    flex-shrink: 0;
+    width: 220px;
+    background: linear-gradient(135deg, rgba(14,58,110,0.7), rgba(10,22,40,0.9));
+    border: 1px solid rgba(232,160,32,0.3);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .banner-card:active { transform: scale(0.97); border-color: var(--gold); }
+  .banner-flag { font-size: 26px; margin-bottom: 6px; display: block; }
+  .banner-country { font-size: 13px; font-weight: bold; color: var(--white); margin-bottom: 4px; }
+  .banner-price {
+    font-size: 16px; font-weight: bold;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 6px;
+  }
+  .banner-tag {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--sky); border: 1px solid rgba(26,110,181,0.4);
+    border-radius: 20px; padding: 2px 8px;
+  }
+  .banner-includes { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+  /* ── MODAL ───────────────────────────────────────────── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(5,12,25,0.92);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    align-items: flex-end; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #0d1f3c;
+    border: 1px solid rgba(232,160,32,0.25);
+    border-radius: 20px 20px 0 0;
+    width: 100%; max-width: 480px;
+    max-height: 88vh; overflow-y: auto;
+    padding: 24px 20px 36px;
+    animation: slideUp 0.3s ease forwards;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(60px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .modal-close {
+    float: right; background: rgba(255,255,255,0.07); border: none;
+    color: var(--muted); font-size: 18px; width: 32px; height: 32px;
+    border-radius: 50%; cursor: pointer; line-height: 32px; text-align: center;
+  }
+  .modal-flag { font-size: 40px; display: block; margin-bottom: 6px; }
+  .modal-title { font-size: 20px; font-weight: bold; color: var(--white); margin-bottom: 2px; }
+  .modal-price {
+    font-size: 22px; font-weight: bold;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 14px;
+  }
+  .modal-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .modal-pill {
+    font-size: 11px; padding: 4px 10px; border-radius: 20px;
+    border: 1px solid rgba(26,110,181,0.35); color: var(--sky);
+  }
+  .modal-section { margin-bottom: 14px; }
+  .modal-section-title {
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .modal-list { list-style: none; }
+  .modal-list li { font-size: 13px; color: var(--muted); padding: 4px 0; line-height: 1.4; }
+  .modal-wa {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 15px;
+    background: linear-gradient(135deg, var(--wa), var(--wa2));
+    border: none; border-radius: 14px;
+    color: #fff; font-size: 15px; font-weight: bold; font-family: inherit;
+    cursor: pointer; text-decoration: none;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.3);
+    margin-top: 18px;
+  }
+
+  /* ── SECCIONES INFERIORES ────────────────────────────── */
+  .faq-section, .payment-section {
+    margin-top: 28px;
+  }
+  .section-header {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-header::after {
+    content: ''; flex: 1; height: 1px; background: rgba(232,160,32,0.2);
+  }
+  .faq-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 8px; overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; background: none; border: none; color: var(--white);
+    font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif;
+    padding: 14px 16px; text-align: left; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .faq-q .arrow { font-size: 10px; color: var(--gold); transition: transform 0.25s; flex-shrink: 0; }
+  .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+  .faq-a {
+    display: none; padding: 0 16px 14px;
+    font-size: 13px; color: var(--muted);
+    font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6;
+  }
+  .faq-item.open .faq-a { display: block; }
+  .payment-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .payment-pill {
+    background: rgba(26,110,181,0.1); border: 1px solid rgba(26,110,181,0.3);
+    border-radius: 10px; padding: 8px 14px;
+    font-size: 13px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--white);
+  }
+  .payment-note {
+    background: rgba(232,160,32,0.07); border: 1px solid rgba(232,160,32,0.2);
+    border-radius: 12px; padding: 12px 16px;
+    font-size: 12px; color: #c8a060; line-height: 1.6;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
 </style>
 </head>
 <body>
 
 <div class="wave-top"></div>
+
+<!-- BANNER CAROUSEL -->
+<div class="banner-section">
+  <div class="banner-track" id="bannerTrack">
+    <div class="banner-card" onclick="openModal('ni')"><span class="banner-flag">🇳🇮</span><div class="banner-country">Nicaragua</div><div class="banner-price">USD 1,350</div><span class="banner-tag">Visado · 1 semana</span><div class="banner-includes">✈️ Vuelo · 🏨 Hotel · 🏥 Seguro</div></div>
+    <div class="banner-card" onclick="openModal('gy')"><span class="banner-flag">🇬🇾</span><div class="banner-country">Guyana</div><div class="banner-price">USD 1,400</div><span class="banner-tag">Boleto · 12 horas</span><div class="banner-includes">✈️ Vuelo · 🏨 Hotel · 🏥 Seguro</div></div>
+    <div class="banner-card" onclick="openModal('sr')"><span class="banner-flag">🇸🇷</span><div class="banner-country">Surinam</div><div class="banner-price">USD 1,250</div><span class="banner-tag">Boleto · 12 horas</span><div class="banner-includes">✈️ Vuelo · 🏨 Hotel · 🏥 Seguro</div></div>
+    <div class="banner-card" onclick="openModal('mx')"><span class="banner-flag">🇲🇽</span><div class="banner-country">México</div><div class="banner-price">USD 3,700</div><span class="banner-tag">Contrato laboral · 15 días</span><div class="banner-includes">📑 Contrato · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('do')"><span class="banner-flag">🇩🇴</span><div class="banner-country">Rep. Dominicana</div><div class="banner-price">USD 1,100</div><span class="banner-tag">Boleto + entrada · 12 horas</span><div class="banner-includes">✈️ Vuelo · 🏨 Hotel · 🏥 Seguro</div></div>
+    <div class="banner-card" onclick="openModal('pa')"><span class="banner-flag">🇵🇦</span><div class="banner-country">Panamá</div><div class="banner-price">USD 2,600</div><span class="banner-tag">Visa turismo · 2 meses</span><div class="banner-includes">📑 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('br')"><span class="banner-flag">🇧🇷</span><div class="banner-country">Brasil</div><div class="banner-price">Variable</div><span class="banner-tag">Traslado terrestre · 3 días</span><div class="banner-includes">🚐 Traslado · 🏨 Hotel · 🍽️ Comidas</div></div>
+    <div class="banner-card" onclick="openModal('uy')"><span class="banner-flag">🇺🇾</span><div class="banner-country">Uruguay</div><div class="banner-price">Variable</div><span class="banner-tag">Traslado terrestre · 3-7 días</span><div class="banner-includes">🚐 Traslado · 🏨 Hotel · 🍽️ Comidas</div></div>
+    <div class="banner-card" onclick="openModal('es')"><span class="banner-flag">🇪🇸</span><div class="banner-country">España</div><div class="banner-price">USD 2,600</div><span class="banner-tag">Visa Schengen · 2 meses</span><div class="banner-includes">📑 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('cl')"><span class="banner-flag">🇨🇱</span><div class="banner-country">Chile</div><div class="banner-price">USD 2,000</div><span class="banner-tag">Visa · 1-1.5 meses</span><div class="banner-includes">🛂 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('pe')"><span class="banner-flag">🇵🇪</span><div class="banner-country">Perú</div><div class="banner-price">USD 1,700</div><span class="banner-tag">Visa · 1 mes</span><div class="banner-includes">🛂 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('co')"><span class="banner-flag">🇨🇴</span><div class="banner-country">Colombia</div><div class="banner-price">USD 2,100</div><span class="banner-tag">Visa · 2 meses</span><div class="banner-includes">🛂 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('ar')"><span class="banner-flag">🇦🇷</span><div class="banner-country">Argentina</div><div class="banner-price">USD 2,200</div><span class="banner-tag">Visa · 2 meses</span><div class="banner-includes">🛂 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('tr')"><span class="banner-flag">🇹🇷</span><div class="banner-country">Turquía</div><div class="banner-price">USD 2,750</div><span class="banner-tag">E-visa · 1 semana</span><div class="banner-includes">🛂 E-visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('ru')"><span class="banner-flag">🇷🇺</span><div class="banner-country">Rusia</div><div class="banner-price">USD 1,500</div><span class="banner-tag">Visa · 1 semana</span><div class="banner-includes">🛂 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('ae')"><span class="banner-flag">🇦🇪</span><div class="banner-country">Emiratos Árabes</div><div class="banner-price">USD 2,600</div><span class="banner-tag">Visa · 5 días</span><div class="banner-includes">🛂 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('sv')"><span class="banner-flag">🇸🇻</span><div class="banner-country">El Salvador</div><div class="banner-price">USD 1,900</div><span class="banner-tag">Visa · 1-2 meses</span><div class="banner-includes">🛂 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <!-- duplicado para loop infinito -->
+    <div class="banner-card" onclick="openModal('ni')"><span class="banner-flag">🇳🇮</span><div class="banner-country">Nicaragua</div><div class="banner-price">USD 1,350</div><span class="banner-tag">Visado · 1 semana</span><div class="banner-includes">✈️ Vuelo · 🏨 Hotel · 🏥 Seguro</div></div>
+    <div class="banner-card" onclick="openModal('gy')"><span class="banner-flag">🇬🇾</span><div class="banner-country">Guyana</div><div class="banner-price">USD 1,400</div><span class="banner-tag">Boleto · 12 horas</span><div class="banner-includes">✈️ Vuelo · 🏨 Hotel · 🏥 Seguro</div></div>
+    <div class="banner-card" onclick="openModal('sr')"><span class="banner-flag">🇸🇷</span><div class="banner-country">Surinam</div><div class="banner-price">USD 1,250</div><span class="banner-tag">Boleto · 12 horas</span><div class="banner-includes">✈️ Vuelo · 🏨 Hotel · 🏥 Seguro</div></div>
+    <div class="banner-card" onclick="openModal('mx')"><span class="banner-flag">🇲🇽</span><div class="banner-country">México</div><div class="banner-price">USD 3,700</div><span class="banner-tag">Contrato laboral · 15 días</span><div class="banner-includes">📑 Contrato · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('es')"><span class="banner-flag">🇪🇸</span><div class="banner-country">España</div><div class="banner-price">USD 2,600</div><span class="banner-tag">Visa Schengen · 2 meses</span><div class="banner-includes">📑 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+    <div class="banner-card" onclick="openModal('pa')"><span class="banner-flag">🇵🇦</span><div class="banner-country">Panamá</div><div class="banner-price">USD 2,600</div><span class="banner-tag">Visa turismo · 2 meses</span><div class="banner-includes">📑 Visa · ✈️ Vuelo · 🏨 Hotel</div></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <span class="modal-flag" id="mFlag"></span>
+    <div class="modal-title" id="mTitle"></div>
+    <div class="modal-price" id="mPrice"></div>
+    <div class="modal-row" id="mPills"></div>
+    <div class="modal-section" id="mIncludes"></div>
+    <div class="modal-section" id="mReqs"></div>
+    <a class="modal-wa" id="mWaBtn" href="#" target="_blank" rel="noopener">💬 &nbsp;Consultar por WhatsApp</a>
+  </div>
+</div>
+
 
 <div class="container">
 
@@ -306,13 +501,13 @@
     <div class="q-text">¿Cuándo planeas viajar?</div>
     <div class="options">
       <button class="opt-btn" onclick="responder(1,'pronto',this)">
-        <span class="opt-icon">🚀</span><span>En este mes</span>
+        <span class="opt-icon">🚀</span><span>En los próximos 3 meses</span>
       </button>
       <button class="opt-btn" onclick="responder(1,'6meses',this)">
-        <span class="opt-icon">📅</span><span>En el próximo mes</span>
+        <span class="opt-icon">📅</span><span>En 3 a 6 meses</span>
       </button>
       <button class="opt-btn" onclick="responder(1,'sinplanes',this)">
-        <span class="opt-icon">🌫</span><span>Aún no tengo fecha definida</span>
+        <span class="opt-icon">🌫</span><span>Sin fecha definida aún</span>
       </button>
     </div>
   </div>
@@ -411,6 +606,33 @@
     <button class="reset-btn" onclick="reiniciar()">↺ &nbsp;Volver a empezar</button>
   </div>
 
+  
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-header">❓ Preguntas frecuentes</div>
+    <div id="faqList">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>¿El precio incluye todo o hay cargos ocultos?</span><span class="arrow">▼</span></button><div class="faq-a">El precio incluye todo lo detallado en cada servicio. No trabajamos con cargos ocultos. Si el consulado solicita algo adicional, se informa antes de cualquier pago extra.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>¿El proceso es seguro?</span><span class="arrow">▼</span></button><div class="faq-a">Sí. Todos los procesos se realizan de forma organizada con acompañamiento constante. Se entregan comprobantes de reservaciones, seguros y documentación según el país.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>¿La visa está 100% garantizada?</span><span class="arrow">▼</span></button><div class="faq-a">Sí. Trabajamos con abogados de inmigración especializados para que el expediente vaya correctamente estructurado y sea aprobado.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>¿Cuándo debo pagar?</span><span class="arrow">▼</span></button><div class="faq-a">Depende del país. En procesos con pago íntegro se comienza al confirmar el pago total. En procesos 50/50, el primer 50% activa la gestión y el resto se paga antes de la entrega final.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>¿Qué pasa si me falta algún requisito?</span><span class="arrow">▼</span></button><div class="faq-a">Nuestro equipo te orienta paso a paso. Si no tienes currículum (para contrato laboral), lo elaboramos nosotros. Si falta algún documento, te indicamos cómo obtenerlo.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>¿Hacen devoluciones?</span><span class="arrow">▼</span></button><div class="faq-a">No se realizan devoluciones una vez iniciado el proceso, ya que se activan gestiones administrativas y costos operativos desde el primer momento.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span>¿Puedo hacer el proceso desde otro país?</span><span class="arrow">▼</span></button><div class="faq-a">Sí, siempre que puedas enviar la documentación digital requerida y cumplir los requisitos del país seleccionado.</div></div>
+    </div>
+  </div>
+
+  <!-- MÉTODOS DE PAGO -->
+  <div class="payment-section">
+    <div class="section-header">💳 Métodos de pago</div>
+    <div class="payment-grid">
+      <div class="payment-pill">✅ Zelle</div>
+      <div class="payment-pill">✅ PayPal</div>
+      <div class="payment-pill">✅ USD efectivo</div>
+      <div class="payment-pill">✅ CUP (+5%)</div>
+    </div>
+    <div class="payment-note">📌 No se inicia ningún proceso sin confirmación del pago. En pagos por PayPal, el cliente asume las comisiones de la plataforma si aplican.</div>
+  </div>
+
   <footer>
     <p>© 2025 <span>Novatravel Cuba</span> · Sin cookies · Sin datos guardados</p>
   </footer>
@@ -418,8 +640,9 @@
 </div>
 
 <script>
-  // ── CONFIGURACIÓN ──────────────────────────────────────
-  const WA_NUMBER = "18494627511";
+  // ── CONFIGURACIÓN — edita solo estas 2 líneas ──────────
+  const WA_NUMBER = "5351234567";   // ← tu número real con código de país, sin +
+  const WA_MSG    = "Hola, acabo de hacer el test en su web y me interesa planificar mi viaje. ¿Me pueden ayudar?";
   // ────────────────────────────────────────────────────────
 
   const CLAVES = ['pasaporte', 'cuando', 'destino'];
@@ -464,35 +687,6 @@
     }, 800);
   }
 
-  function generarMensaje(p, c, d, pts) {
-    // Listo para viajar ya
-    if (p === 'si' && c === 'pronto' && d === 'definido')
-      return "¡Hola! Tengo pasaporte vigente, quiero viajar en menos de 3 meses y ya sé a dónde voy. ¿Me ayudan a cerrar todo rápido?";
-    // Listo pero sin destino claro
-    if (p === 'si' && c === 'pronto' && d === 'pensando')
-      return "¡Hola! Tengo pasaporte y quiero viajar pronto, pero aún estoy entre varios destinos. ¿Me pueden orientar?";
-    // Listo pero sin fecha
-    if (p === 'si' && c === 'pronto' && d === 'nodecidido')
-      return "¡Hola! Tengo pasaporte vigente y ganas de viajar pronto, pero todavía no sé a dónde. ¿Qué opciones me recomiendan?";
-    // Pasaporte ok, plazo 6 meses
-    if (p === 'si' && c === '6meses' && d === 'definido')
-      return "¡Hola! Tengo pasaporte y ya sé mi destino, pero viajaría en unos 3 a 6 meses. ¿Cuándo conviene empezar a organizar todo?";
-    if (p === 'si' && c === '6meses')
-      return "¡Hola! Tengo pasaporte vigente y pienso viajar en los próximos 6 meses. ¿Me pueden ayudar a planificarlo con tiempo?";
-    // Pasaporte ok, sin planes fijos
-    if (p === 'si' && c === 'sinplanes' && d === 'definido')
-      return "¡Hola! Tengo pasaporte y destino en mente, aunque todavía sin fecha fija. ¿Pueden darme una idea de costos y tiempos?";
-    if (p === 'si' && c === 'sinplanes')
-      return "¡Hola! Tengo pasaporte vigente pero aún no tengo fecha ni destino definido. Me gustaría explorar opciones con ustedes.";
-    // En trámite, quiere viajar pronto
-    if (p === 'tramitando' && c === 'pronto')
-      return "¡Hola! Estoy tramitando el pasaporte y quiero viajar lo antes posible. ¿Me pueden ayudar a coordinar los tiempos?";
-    if (p === 'tramitando')
-      return "¡Hola! Estoy en proceso con el pasaporte. ¿Puedo ir organizando el viaje mientras lo termino de gestionar?";
-    // Sin pasaporte
-    return null; // va a la guía, no al WhatsApp
-  }
-
   function evaluarLocal() {
     let pts = 0;
     const p = respuestas.pasaporte;
@@ -505,10 +699,9 @@
 
     if (pts >= 5) {
       const perfil = pts >= 7 ? 'Viajero listo para despegar 🛫' : 'Cliente con alto potencial ✈️';
-      const msg = generarMensaje(p, c, d, pts) || "¡Hola! Acabo de hacer el test en su web y me interesa planificar mi viaje. ¿Me pueden ayudar?";
       document.getElementById('perfilTexto').textContent = perfil;
       document.getElementById('waBtn').href =
-        'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+        'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_MSG);
       document.getElementById('resultPotential').classList.add('visible');
     } else {
       document.getElementById('resultGuide').classList.add('visible');
@@ -527,6 +720,55 @@
     actualizarProgreso(0);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // ── DATOS DESTINOS ───────────────────────────────────
+  const DESTINOS = {
+    ni: { flag:'🇳🇮', name:'Nicaragua', price:'USD 1,350', pills:['Visado','1 semana','Pago íntegro'], includes:['✈️ Reservación de vuelo','🏨 Reservación de hotel','🏥 Seguro médico internacional','📑 Gestión de visado'], reqs:['📸 Fotografías tipo pasaporte','🪪 Carnet de identidad','📘 Primera hoja del pasaporte','🛃 Páginas con cuños (si viajó)','🏠 Dirección actual','💍 Estado civil','💼 Ocupación','📞 Teléfono','📧 Correo electrónico'] },
+    gy: { flag:'🇬🇾', name:'Guyana', price:'USD 1,400', pills:['Boleto aéreo','12 horas','Pago íntegro'], includes:['✈️ Vuelo','🏨 Reservación de hotel','🏥 Seguro médico internacional','📄 Documentación correspondiente'], reqs:[] },
+    sr: { flag:'🇸🇷', name:'Surinam', price:'USD 1,250', pills:['Boleto aéreo','12 horas','Pago íntegro'], includes:['✈️ Vuelo','🏨 Reservación de hotel','🏥 Seguro médico internacional'], reqs:[] },
+    mx: { flag:'🇲🇽', name:'México', price:'USD 3,700', pills:['Contrato laboral','15 días','Pago íntegro'], includes:['📑 Contrato laboral','🛂 Visa por contrato','🏨 Reservación de hotel','✈️ Reservación de vuelo','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📞 Número telefónico','📄 Currículum (lo elaboramos si no posee)','📘 Foto del pasaporte'] },
+    do: { flag:'🇩🇴', name:'República Dominicana', price:'USD 1,100', pills:['Boleto + entrada','12 horas','Pago íntegro'], includes:['✈️ Vuelo','🏨 Reservación de hotel','🏥 Seguro médico internacional','🛃 Asistencia de entrada'], reqs:[] },
+    pa: { flag:'🇵🇦', name:'Panamá', price:'USD 2,600', pills:['Visa turismo','2 meses','50% inicial + 50% al finalizar'], includes:['📑 Gestión de visa','🏨 Reservación de hotel','✈️ Reservación de vuelo','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📞 Número telefónico','📘 Foto del pasaporte'] },
+    br: { flag:'🇧🇷', name:'Brasil', price:'Variable', pills:['Traslado terrestre','3 días','Pago íntegro'], includes:['🚐 Traslado desde Guyana','🏨 Hotel','🏥 Seguro médico internacional','🍽️ Desayuno, almuerzo y cena','📱 SIM con llamadas e internet'], reqs:[] },
+    uy: { flag:'🇺🇾', name:'Uruguay', price:'Variable', pills:['Traslado terrestre','3-7 días','Pago íntegro'], includes:['🚐 Traslado desde Brasil','🏨 Hotel','🏥 Seguro médico internacional','🍽️ Desayuno, almuerzo y cena','📱 SIM con llamadas e internet'], reqs:[] },
+    es: { flag:'🇪🇸', name:'España', price:'USD 2,600', pills:['Visa Schengen','2-2.5 meses','50% inicial + 50% al finalizar'], includes:['📑 Gestión de visado','✈️ Reservación de vuelo','🏨 Reservación de hotel','🏥 Seguro médico internacional'], reqs:['📸 Foto 4x4','📘 Foto del pasaporte','📝 Relleno de formulario','📄 Documentación adicional del consulado'] },
+    cl: { flag:'🇨🇱', name:'Chile', price:'USD 2,000', pills:['Visa','1-1.5 meses','50% inicial + 50% al finalizar'], includes:['🛂 Visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+    pe: { flag:'🇵🇪', name:'Perú', price:'USD 1,700', pills:['Visa','1 mes','50% inicial + 50% al finalizar'], includes:['🛂 Visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+    co: { flag:'🇨🇴', name:'Colombia', price:'USD 2,100', pills:['Visa','2-2.5 meses','50% inicial + 50% al finalizar'], includes:['🛂 Visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+    ar: { flag:'🇦🇷', name:'Argentina', price:'USD 2,200', pills:['Visa','2 meses','50% inicial + 50% al finalizar'], includes:['🛂 Visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+    tr: { flag:'🇹🇷', name:'Turquía', price:'USD 2,750', pills:['E-visa','1 semana','50% inicial + 50% al finalizar'], includes:['🛂 E-visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+    ru: { flag:'🇷🇺', name:'Rusia', price:'USD 1,500', pills:['Visa','1 semana','50% inicial + 50% al finalizar'], includes:['🛂 Visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+    ae: { flag:'🇦🇪', name:'Emiratos Árabes Unidos', price:'USD 2,600', pills:['Visa','5 días','50% inicial + 50% al finalizar'], includes:['🛂 Visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+    sv: { flag:'🇸🇻', name:'El Salvador', price:'USD 1,900', pills:['Visa','1-2 meses','50% inicial + 50% al finalizar'], includes:['🛂 Visa','✈️ Vuelo','🏨 Hotel','🏥 Seguro médico internacional'], reqs:['📝 Relleno de formulario','📸 Foto 4x4','📘 Foto del pasaporte'] },
+  };
+
+  function openModal(code) {
+    const d = DESTINOS[code]; if (!d) return;
+    document.getElementById('mFlag').textContent  = d.flag;
+    document.getElementById('mTitle').textContent = d.name;
+    document.getElementById('mPrice').textContent = d.price;
+    document.getElementById('mPills').innerHTML   = d.pills.map(p => `<span class="modal-pill">${p}</span>`).join('');
+    document.getElementById('mIncludes').innerHTML =
+      `<div class="modal-section-title">✅ Incluye</div><ul class="modal-list">${d.includes.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+    document.getElementById('mReqs').innerHTML = d.reqs.length
+      ? `<div class="modal-section-title">📋 Requisitos</div><ul class="modal-list">${d.reqs.map(r=>`<li>${r}</li>`).join('')}</ul>` : '';
+    const msg = encodeURIComponent(`¡Hola! Estoy interesado en el servicio para ${d.name} (${d.price}). ¿Me pueden dar más información?`);
+    document.getElementById('mWaBtn').href = `https://wa.me/18494627511?text=${msg}`;
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
 </script>
 </body>
 </html>
