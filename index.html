@@ -192,7 +192,141 @@ nav{
   to{opacity:1;transform:translateY(0)}
 }
 
-/* ── SECCIÓN ── */
+/* ── WHATSAPP HERO BUTTON ── */
+.btn-wa-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 28px;
+  background:linear-gradient(135deg,#25d366,#128c4a);
+  color:#fff;text-decoration:none;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:15px;font-weight:600;letter-spacing:.3px;
+  border-radius:50px;border:none;cursor:pointer;
+  box-shadow:0 6px 28px rgba(37,211,102,.40),0 2px 8px rgba(0,0,0,.3);
+  transition:transform .2s,box-shadow .2s,background .2s;
+  position:relative;overflow:hidden;
+  opacity:0;animation:fadeUp .6s .5s ease forwards;
+}
+.btn-wa-hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent 60%);
+  pointer-events:none;
+}
+.btn-wa-hero:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 10px 36px rgba(37,211,102,.55),0 4px 12px rgba(0,0,0,.4);
+  background:linear-gradient(135deg,#2de26f,#1ab355);
+}
+.btn-wa-hero:active{transform:scale(.97)}
+.btn-wa-hero .wa-icon{
+  font-size:20px;
+  animation:waPulse 2.5s infinite;
+}
+@keyframes waPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+}
+.btn-wa-hero-wrap{
+  margin-top:28px;
+  opacity:0;animation:fadeUp .6s .5s ease forwards;
+}
+.btn-wa-hero-sub{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:11px;color:var(--muted);margin-top:9px;
+  letter-spacing:.3px;
+  text-shadow:0 1px 4px rgba(0,0,0,.8);
+}
+
+/* ── FLOATING WA BUTTON ── */
+.wa-float{
+  position:fixed;bottom:24px;right:20px;z-index:500;
+  width:56px;height:56px;
+  background:linear-gradient(135deg,#25d366,#128c4a);
+  border-radius:50%;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+  box-shadow:0 4px 20px rgba(37,211,102,.5),0 2px 8px rgba(0,0,0,.3);
+  transition:transform .2s,box-shadow .2s;
+  animation:floatIn .5s 1s ease both;
+}
+.wa-float:hover{
+  transform:scale(1.1);
+  box-shadow:0 8px 28px rgba(37,211,102,.65);
+}
+@keyframes floatIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.wa-float-tooltip{
+  position:absolute;right:66px;top:50%;transform:translateY(-50%);
+  background:rgba(10,22,40,.92);color:var(--white);
+  font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;
+  padding:6px 12px;border-radius:8px;white-space:nowrap;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s;
+  border:1px solid var(--border);
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.wa-float:hover .wa-float-tooltip{opacity:1}
+
+/* ── HERO DIVIDER ── */
+.hero-divider{
+  position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;padding:0 20px;margin-top:-8px;
+  opacity:0;animation:fadeUp .6s .55s ease forwards;
+}
+.hero-divider::before,.hero-divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  max-width:120px;
+}
+.hero-divider-text{
+  font-family:'Helvetica Neue',Arial,sans-serif;
+  font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;
+}
+
+/* ── SMOOTH SCROLL ── */
+html{scroll-behavior:smooth}
+*{transition-timing-function:cubic-bezier(.4,0,.2,1)}
+
+/* ── CARD HOVER GLOW ── */
+.dest-card{
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1),
+             box-shadow .25s ease,
+             border-color .25s ease;
+}
+.dest-card:hover{
+  transform:translateY(-4px) scale(1.015);
+  box-shadow:0 12px 40px rgba(26,95,168,.25),0 4px 16px rgba(0,0,0,.3)!important;
+}
+
+/* ── FILTER BOX UPGRADE ── */
+.filter-box{
+  position:relative;
+  overflow:hidden;
+}
+.filter-box::before{
+  content:'';
+  position:absolute;top:-1px;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--gold3),var(--blue2),transparent);
+}
+
+/* ── NAV UPGRADE ── */
+nav{
+  transition:background .3s,backdrop-filter .3s;
+}
+
+/* ── BUTTON RIPPLE ── */
+.btn-buscar,.btn-reservar,.btn-wa-modal{
+  position:relative;overflow:hidden;
+}
+.btn-buscar::after,.btn-reservar::after,.btn-wa-modal::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle,rgba(255,255,255,.2) 0%,transparent 60%);
+  transform:scale(0);opacity:0;transition:transform .4s,opacity .4s;
+}
+.btn-buscar:active::after,.btn-reservar:active::after,.btn-wa-modal:active::after{
+  transform:scale(2);opacity:1;transition:none;
+}
+
+/* ── SECTION ── */
 .sec{position:relative;z-index:1;padding:48px 16px}
 .sec-alt{
   background:rgba(10,22,40,.85);
@@ -614,10 +748,29 @@ footer p{font-family:'Helvetica Neue',Arial,sans-serif;font-size:12px;color:var(
     <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Soporte</div></div>
     <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Comprobantes</div></div>
   </div>
+  <!-- CTA principal con WhatsApp -->
+  <div class="btn-wa-hero-wrap">
+    <button class="btn-wa-hero" onclick="abrirTestDesdeHero()">
+      <span class="wa-icon">💬</span>
+      <span>Consulta por WhatsApp</span>
+    </button>
+    <div class="btn-wa-hero-sub">Responde 3 preguntas rápidas → recibe asesoría personalizada</div>
+  </div>
+
+  <div class="hero-divider">
+    <div class="hero-divider-text">O explora destinos abajo</div>
+  </div>
+
   <div class="hero-scroll">
     <a href="#destinos"><span class="hero-scroll-arrow">↓</span><span>Ver servicios</span></a>
   </div>
 </div>
+
+<!-- BOTÓN FLOTANTE WA -->
+<button class="wa-float" onclick="abrirTestDesdeHero()" aria-label="Consultar por WhatsApp">
+  💬
+  <div class="wa-float-tooltip">¿Tienes dudas? Escríbenos</div>
+</button>
 
 <!-- BUSCADOR -->
 <section class="sec" id="destinos">
@@ -1096,6 +1249,102 @@ function renderGrid(lista) {
 }
 
 renderGrid(Object.entries(DEST));
+
+/* ── TEST DESDE HERO (sin destino seleccionado) ─ */
+function abrirTestDesdeHero() {
+  modalDestKey = null;
+  testPaso = 0;
+  testRespuestas = {};
+  // Mostrar modal con test directo
+  document.getElementById('modalContent').innerHTML = '';
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  renderTestStepHero();
+}
+
+function renderTestStepHero() {
+  const q = TEST_PREGUNTAS[testPaso];
+  const dots = TEST_PREGUNTAS.map((_,i) => {
+    let cls = 'tdot';
+    if (i < testPaso)  cls += ' done';
+    if (i === testPaso) cls += ' active';
+    return `<span class="${cls}"></span>`;
+  }).join('');
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-handle" style="margin-top:14px"></div>
+    <div class="modal-body" style="padding-top:18px">
+      <div class="test-header">
+        <div class="test-brand">✈ NovaTravel · Verifica tu perfil</div>
+        <div class="test-dots">${dots}</div>
+        <div class="test-paso">Pregunta ${q.paso}</div>
+      </div>
+      <div class="test-q">${q.texto}</div>
+      <div class="test-opciones">
+        ${q.opciones.map(o=>`
+          <button class="test-opt" onclick="responderTestHero('${q.id}','${o.val}')">
+            <span class="test-opt-ico">${o.ico}</span>
+            <span>${o.label}</span>
+          </button>`).join('')}
+      </div>
+      <button class="btn-modal-close" style="margin-top:10px" onclick="closeModal()">✕ &nbsp;Cerrar</button>
+    </div>
+  `;
+}
+
+function responderTestHero(id, val) {
+  testRespuestas[id] = val;
+  event.currentTarget.style.borderColor = 'var(--blue2)';
+  event.currentTarget.style.background  = 'rgba(26,95,168,.2)';
+  setTimeout(() => {
+    testPaso++;
+    if (testPaso < TEST_PREGUNTAS.length) {
+      renderTestStepHero();
+    } else {
+      mostrarResultadoTestHero();
+    }
+  }, 280);
+}
+
+function mostrarResultadoTestHero() {
+  const potencial = evaluar(testRespuestas);
+  const waUrl = `https://wa.me/${WA}?text=${encodeURIComponent('Hola NovaTravel, acabo de responder el test en su web y estoy interesado en planificar mi viaje. ¿Me pueden ayudar?')}`;
+
+  if (potencial) {
+    document.getElementById('modalContent').innerHTML = `
+      <div class="modal-handle" style="margin-top:14px"></div>
+      <div class="modal-body" style="padding-top:20px">
+        <div class="test-result-icon">🎉</div>
+        <div class="test-result-title">¡Perfil <em>aprobado!</em></div>
+        <div class="test-result-sub">¡Excelente! Estás listo para iniciar tu proceso migratorio. Un asesor de NovaTravel te atenderá de inmediato por WhatsApp.</div>
+        <a class="btn-wa-modal" href="${waUrl}" target="_blank" rel="noopener">
+          <span>💬</span> Hablar con un asesor ahora
+        </a>
+        <button class="btn-modal-close" style="margin-top:10px" onclick="closeModal()">✕ &nbsp;Cerrar</button>
+      </div>
+    `;
+  } else {
+    document.getElementById('modalContent').innerHTML = `
+      <div class="modal-handle" style="margin-top:14px"></div>
+      <div class="modal-body" style="padding-top:20px">
+        <div class="test-result-icon">📖</div>
+        <div class="test-result-title" style="font-size:18px">Guía del <em>Viajero</em></div>
+        <div class="test-result-sub">Te ayudamos a prepararte para iniciar tu proceso migratorio con éxito:</div>
+        <div class="guia-items">
+          <div class="guia-item"><span>🪪</span><div><strong>Tramita tu pasaporte</strong><p>Solicítalo en Inmigración con carné, fotos y aranceles. Tiempo estimado: 30–60 días.</p></div></div>
+          <div class="guia-item"><span>💰</span><div><strong>Prepara los fondos</strong><p>Puedes iniciar con el 50% en la mayoría de nuestros procesos.</p></div></div>
+          <div class="guia-item"><span>📅</span><div><strong>Planifica con tiempo</strong><p>Reserva con al menos 60 días de anticipación para mejores resultados.</p></div></div>
+          <div class="guia-item"><span>📞</span><div><strong>Consulta sin compromiso</strong><p>Cuando estés listo, nuestro equipo te guiará paso a paso.</p></div></div>
+        </div>
+        <a class="btn-wa-modal" href="${waUrl}" target="_blank" rel="noopener" style="margin-top:16px">
+          <span>💬</span> Consultar por WhatsApp igualmente
+        </a>
+        <button class="btn-reservar" style="margin-top:10px" onclick="abrirTestDesdeHero()">↺ &nbsp;Repetir verificación</button>
+        <button class="btn-modal-close" style="margin-top:8px" onclick="closeModal()">✕ &nbsp;Cerrar</button>
+      </div>
+    `;
+  }
+}
 
 /* ── FILTRAR ────────────────────────────────────── */
 function filtrar() {
